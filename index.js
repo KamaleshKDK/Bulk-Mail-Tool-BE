@@ -4,18 +4,14 @@ const bodyParser = require("body-parser");
 const creds = require("./credential.json");
 const cors = require("cors");
 
+//Initiate Express and CORS and Body Parser
+
 let app = express();
-app.use(cors({
-    origin: "*"
-}));
-
-const path = require("path");
-const { getMaxListeners } = require("process");
-app.use("/public", express.static(path.join(__dirname, 'public')))
-
+app.use(cors({ origin: "*" }));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
+// Nodeamailer
 
 let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -27,6 +23,7 @@ let transporter = nodemailer.createTransport({
     },
 });
 
+// api for sending emails
 
 app.post("/mail", (req, res, next) => {
     console.log(req.body.email);
@@ -34,10 +31,7 @@ app.post("/mail", (req, res, next) => {
     var message = req.body.message
     var subject = req.body.subject
     var name = req.body.name
-    // var name = req.body.name
-
-
-
+  
     const mailOptions = {
         from: name,
         to: email,
@@ -60,6 +54,7 @@ app.post("/mail", (req, res, next) => {
     })
 })
 
+// Just verify the mails to send
 
 transporter.verify(function (err, success) {
     if (err) {
@@ -69,11 +64,7 @@ transporter.verify(function (err, success) {
     }
 })
 
-
-
-
-
-
+// PORT Listening
 
 const PORT = process.env.PORT || 3030
 app.listen(PORT, () => console.info("Server has Started", PORT))
