@@ -5,9 +5,9 @@ const creds = require("./credential.json");
 const cors = require("cors");
 const mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient;
-const URL = "mongodb+srv://BulkMail:bulkmail@cluster0.pazhx.mongodb.net?retryWrites=true&w=majority"
-require("dotenv").config();
+const URL ="mongodb+srv://BulkMail:bulkmail@cluster0.pazhx.mongodb.net?retryWrites=true&w=majority"
 // const URL = "mongodb://localhost:27017";
+
 
 //Initiate Express and CORS and Body Parser
 
@@ -23,8 +23,8 @@ let transporter = nodemailer.createTransport({
     port: 587,
     secure: false,
     auth: {
-        user: process.env.user,
-        pass: process.env.pass
+        user: creds.auth.user,
+        pass: creds.auth.pass
     },
 });
 
