@@ -1,7 +1,7 @@
 const express = require("express");
 let nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
-const creds = require("./credential.json");
+// const creds = require("./credential.json");
 const cors = require("cors");
 const mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient;
@@ -23,8 +23,8 @@ let transporter = nodemailer.createTransport({
     port: 587,
     secure: false,
     auth: {
-        user: creds.auth.user,
-        pass: creds.auth.pass
+        user: process.env.user,
+        pass: process.env.pass
     },
 });
 
