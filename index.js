@@ -1,11 +1,10 @@
 const express = require("express");
 let nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
-// const creds = require("./credential.json");
 const cors = require("cors");
 const mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient;
-const URL ="mongodb+srv://BulkMail:bulkmail@cluster0.pazhx.mongodb.net?retryWrites=true&w=majority"
+const URL =process.env.URL;
 // const URL = "mongodb://localhost:27017";
 
 
