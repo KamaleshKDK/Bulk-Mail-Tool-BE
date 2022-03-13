@@ -50,7 +50,7 @@ app.post("/mail", async (req, res) => {
         from: name,
         to: email,
         subject: subject,
-        html: `<br /> ${message}`
+        html: `${message}`
     }
 
     transporter.sendMail(mailOptions, (err, data) => {
